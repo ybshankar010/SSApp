@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SQLForAndroid</string>
+    <string name="defaultTextForCommand">Enter command to be executed here.</string>
+    <string name="execute">Execute</string>
+</resources>
