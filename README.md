@@ -1,2 +1,2 @@
 # SSApp
-This is code for using android to learn sql
+This is code for using android app to learn sql
