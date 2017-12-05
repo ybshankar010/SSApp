@@ -14,7 +14,9 @@
  */
 package com.crazyants.sqlforandroid.database.interfaces;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -25,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AndroidSQLHelper extends SQLiteOpenHelper {
+public class AndroidSQLHelper extends SQLiteOpenHelper implements IDatabaseHelper{
     private static final String TAG = AndroidSQLHelper.class.getSimpleName();
 
     private final Map<String,DefaultTable> mTables;
@@ -52,7 +54,54 @@ public class AndroidSQLHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
+        //                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              TODO Has to provide support for table
+    }
 
+    @Override
+    public Cursor query(String tableName, String[] projection, String where, String[] selectionArgs,
+                        String groupBy, String having, String orderBy, String limit) {
+        DefaultTable table = mTables.get(tableName);
+        if (table == null) {
+            Log.error(TAG,"In appropriate table");
+            return null;
+        }
+        return table.query(projection,where,selectionArgs,groupBy,having,orderBy,limit);
+    }
+
+    @Override
+    public long insert(String tableName, ContentValues values) {
+        DefaultTable table = mTables.get(tableName);
+        if (table == null) {
+            Log.error(TAG,"In appropriate table");
+            return -1;
+        }
+        return table.insert(values);
+    }
+
+    @Override
+    public int delete(String tableName, String where, String[] selectionArgs) {
+        DefaultTable table = mTables.get(tableName);
+        if (table == null) {
+            Log.error(TAG,"In appropriate table");
+            return -1;
+        }
+        return table.delete(where,selectionArgs);
+    }
+
+    @Override
+    public int update(String tableName, ContentValues values, String where, String[] selectionArgs) {
+        DefaultTable table = mTables.get(tableName);
+        if (table == null) {
+            Log.error(TAG,"In appropriate table");
+            return -1;
+        }
+
+        return table.update(values, where, selectionArgs);
+    }
+
+    @Override
+    public void execSQL(String sqlStmt) {
+        getWritableDatabase().execSQL(sqlStmt);
     }
 }

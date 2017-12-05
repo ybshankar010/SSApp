@@ -19,7 +19,6 @@ import android.content.Context;
 import com.crazyants.sqlforandroid.database.interfaces.AndroidSQLHelper;
 import com.crazyants.sqlforandroid.database.interfaces.DBConstants;
 import com.crazyants.sqlforandroid.database.interfaces.tables.DefaultTable;
-import com.crazyants.sqlforandroid.database.interfaces.tables.ITableInterface;
 import com.crazyants.sqlforandroid.database.internal.tables.HistoryTable;
 import com.crazyants.sqlforandroid.database.internal.tables.TableList;
 
